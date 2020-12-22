@@ -14,7 +14,9 @@ from flask_mail import Message
 @app.route("/home")
 def home():
     page = request.args.get('page', 1, type=int)
+
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+
     return render_template('home.html', posts=posts)
 
 
@@ -125,11 +127,11 @@ def account():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        if form.img_file.data:
-            img_file = postpics(form.img_file.data)
-            db.session.add(form.img_file.data)
+        # if form.img_file.data:
+            # img_file = postpics(form.img_file.data)
+            # db.session.add(form.img_file.data)
             # img_file=form.img_file.data
-        post = Post(title=form.title.data, content=form.content.data, author=current_user, img_file=form.img_file.data)
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
@@ -241,3 +243,7 @@ def site():
 @app.route("/contact")
 def contact():
     return render_template('contact.html', title='Contact Us')
+
+
+
+

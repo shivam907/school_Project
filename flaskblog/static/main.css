@@ -87,6 +87,18 @@ a.article-title:hover {
   color: #cbd5db;
 }
 
+.folink {
+  color: #000000;
+}
+
+.folink:hover {
+  color:#a5a5a5
+}
+
+.folink.active {
+  font-weight: 500;
+}
+
 .fotlink:hover {
   color: #ffffff;
 }
