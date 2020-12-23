@@ -244,6 +244,10 @@ def site():
 def contact():
     return render_template('contact.html', title='Contact Us')
 
+@app.route("/weather",  methods=['GET', 'POST'])
+def weather():
+    b=100
+    return render_template('weather.html', a=b)
 
 
 
