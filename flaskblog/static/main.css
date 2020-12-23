@@ -98,10 +98,10 @@ a.article-title:hover {
 .folink.active {
   font-weight: 500;
 }
-/* 
-.fotlink:hover {
 
-} */
+.fotlink:hover {
+  color: #ffffff;
+}
 
 .share {
   margin-right: 5px;
