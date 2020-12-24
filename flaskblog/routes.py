@@ -255,7 +255,7 @@ def weatherf():
         api="c445762544df62f5dc5ccf510d289aea"
         source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(city, api)).read() 
         temp = round(json.loads(source)['main']['temp']-273.15)
-        flash('Your post has been created!', 'success')
+        # flash('Your post has been created!', 'success')
         # return redirect(url_for('home'))
     return render_template('weather.html', title='New',
                             form=form, legend='city', c=temp, city=city.capitalize())
