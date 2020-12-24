@@ -80,3 +80,7 @@ class ResetPasswordForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
 
+class weather(FlaskForm):
+    city = StringField('city', validators=[DataRequired()])
+    submit = SubmitField(' Check ')
+
