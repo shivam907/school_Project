@@ -245,7 +245,6 @@ def weatherf():
     b=100
     form = weather()
     if form.validate_on_submit():
-        # post = Post(city=form.city.data)
         flash('Your post has been created!', 'success')
         # return redirect(url_for('home'))
     return render_template('weather.html', title='New',
