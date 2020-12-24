@@ -42,7 +42,7 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if current_user.is_authenticated %}
-                        <a class="weather" href="{{ url_for('weatherf') }}"><b>Check Weather</b></a>
+                        <a class="weather nav-item nav-link" href="{{ url_for('weatherf') }}"><b>Check Weather</b></a>
                         <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
                         
                         <a class="nav-item nav-link" href="{{ url_for('account') }}">Profile</a>
