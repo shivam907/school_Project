@@ -1,5 +1,7 @@
 import os
 import secrets
+import json
+import urllib.request
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from flaskblog import app, db, bcrypt, mail
@@ -8,6 +10,7 @@ from flaskblog.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
+
 
 
 @app.route("/")
@@ -245,10 +248,14 @@ def weatherf():
     b=100
     form = weather()
     if form.validate_on_submit():
+        city=form.city.data
+        api="c445762544df62f5dc5ccf510d289aea"
+        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(city, api)).read() 
+        temp = json.loads(source)['main']['temp']-273.15
         flash('Your post has been created!', 'success')
         # return redirect(url_for('home'))
     return render_template('weather.html', title='New',
-                            form=form, legend='city', c=form.city.data)
+                            form=form, legend='city', c=temp, city=city)
 
 
 
