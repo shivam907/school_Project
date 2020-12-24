@@ -247,6 +247,8 @@ def contact():
 @app.route("/weather",  methods=['GET', 'POST'])
 def weatherf():
     b=100
+    temp=0
+    city=''
     form = weather()
     if form.validate_on_submit():
         city=form.city.data
@@ -256,7 +258,7 @@ def weatherf():
         flash('Your post has been created!', 'success')
         # return redirect(url_for('home'))
     return render_template('weather.html', title='New',
-                            form=form, legend='city', c=temp, city=city)
+                            form=form, legend='city', c=temp, city=city.capitalize())
 
 
 
