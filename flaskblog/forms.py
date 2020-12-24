@@ -82,6 +82,3 @@ class ResetPasswordForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
 
-class aboutForm(FlaskForm):
-    picture = FileField('Pic', validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('Update')
