@@ -2,6 +2,7 @@ import os
 import secrets
 import json
 import urllib.request
+import math
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from flaskblog import app, db, bcrypt, mail
@@ -251,7 +252,7 @@ def weatherf():
         city=form.city.data
         api="c445762544df62f5dc5ccf510d289aea"
         source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(city, api)).read() 
-        temp = json.loads(source)['main']['temp']-273.15
+        temp = round(json.loads(source)['main']['temp']-273.15)
         flash('Your post has been created!', 'success')
         # return redirect(url_for('home'))
     return render_template('weather.html', title='New',
