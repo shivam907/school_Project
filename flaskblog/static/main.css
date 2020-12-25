@@ -55,12 +55,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .weather {
-  color: #ffffff;
+  color: #050505;
 }
 
 
 .weather:hover {
-  color: #cbd5db;
+  color: #08a4ff;
 }
 
 .weather.active {
