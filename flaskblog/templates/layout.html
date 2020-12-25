@@ -43,7 +43,7 @@
                     <div class="navbar-nav">
                         {% if current_user.is_authenticated %}
                         <div class="dropdown">
-                            <button class="navbar-btn btn dropdown-toggle" type="button" data-toggle="dropdown">Menu
+                            <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown"><img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
                           </button>
                             <ul class="dropdown-menu">
                               <li><a class="weather nav-item nav-link" href="{{ url_for('weatherf') }}"><b>Check Weather</b></a></li>
