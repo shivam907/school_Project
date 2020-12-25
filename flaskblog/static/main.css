@@ -134,13 +134,16 @@ a.article-title:hover {
   color: #cbd5db;
 }
 
-/* .folink {
+.foolink {
   color: #000000;
 }
 
-.folink:hover {
+.foolink:hover {
   color:#a5a5a5
-} */
+} 
+.foolink.active {
+  font-weight: 500;
+}
 
 .folink.active {
   font-weight: 500;
