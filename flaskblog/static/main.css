@@ -139,8 +139,9 @@ a.article-title:hover {
 }
 
 .foolink:hover {
-  color:#a5a5a5
+  color:#a5a5a5;
 } 
+
 .foolink.active {
   font-weight: 500;
 }
