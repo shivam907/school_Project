@@ -256,7 +256,7 @@ def weatherf():
         source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(city, api)).read() 
         temp = round(json.loads(source)['main']['temp']-273.15)
     return render_template('weather.html', title='New',
-                            form=form, legend='city', c=temp, city=city.capitalize())
+                            form=form, legend='Check Temperature', c=temp, city=city.capitalize())
 
 
 
