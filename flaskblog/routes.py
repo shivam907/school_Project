@@ -2,6 +2,7 @@ import os
 import secrets
 import json
 import urllib.request
+import requests
 import math
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
@@ -258,5 +259,12 @@ def weatherf():
     return render_template('weather.html', title='New',
                             form=form, legend='Check Temperature', c=temp, city=city.capitalize())
 
-
+@app.route("/covid", methods=['GET', 'POST'])
+def covid():
+    url = "https://api.covid19india.org/data.json"   #Using API to Get Data
+    r = requests.request('GET', url)
+    d = r.json()
+    b=d['cases_time_series']
+    a=len(b)
+    return render_template('cov.html', title='COVID19', Today_New_Cases=b[a-1]['dailyconfirmed'])
 
