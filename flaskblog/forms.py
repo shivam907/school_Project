@@ -11,7 +11,7 @@ class RegistrationForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=4, max=50)])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
@@ -64,7 +64,7 @@ class PostForm(FlaskForm):
 
 
 class RequestResetForm(FlaskForm):
-    email = StringField('Email',
+    email = StringField('Enter Registered Email',
                         validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
@@ -81,6 +81,10 @@ class ResetPasswordForm(FlaskForm):
     submit = SubmitField('Reset Password')
 
 class weather(FlaskForm):
-    city = StringField('city', validators=[DataRequired()])
+    city = StringField('Enter City', validators=[DataRequired()])
     submit = SubmitField(' Check ')
+
+
+
+
 
