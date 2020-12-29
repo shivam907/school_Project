@@ -44,7 +44,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         msg = Message('Successfully Registered',
-                  sender='cezlogin@gmail.com',
+                  sender='CEZ',
                   recipients=[user.email])
         msg.body = f'''Congratulation Your Account is created 
         your Username: {user.username}
@@ -266,5 +266,5 @@ def covid():
     d = r.json()
     b=d['cases_time_series']
     a=len(b)
-    return render_template('cov.html', title='COVID19', Today_New_Cases=b[a-1]['dailyconfirmed'])
+    return render_template('cov.html', title='COVID19', Today_New_Cases=b[a-1]['totalconfirmed'])
 

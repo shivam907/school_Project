@@ -85,6 +85,3 @@ class weather(FlaskForm):
     submit = SubmitField(' Check ')
 
 
-
-
-
