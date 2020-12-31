@@ -19,5 +19,5 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'cezlogin@gmail.com'  #Email ID
 app.config['MAIL_PASSWORD'] = 'creativeexpertz'  #Email Account Password
 mail = Mail(app)
-
+ 
 from flaskblog import routes
