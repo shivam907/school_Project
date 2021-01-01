@@ -269,3 +269,6 @@ def covid():
     a=len(b)
     return render_template('cov.html', title='COVID19', Today_New_Cases=b[a-1]['totalconfirmed'])
 
+
+
+
