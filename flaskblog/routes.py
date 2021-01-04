@@ -326,10 +326,11 @@ def verify_codee(otp_id):
     if form2.validate_on_submit():
         code = form2.code.data
         if verify_code(code, otp_id):
-            flash("Your Code in Verified", 'success')
+            flash("Your Code is Verified", 'success')
         else:
-            flash("Invalid Code", 'warning')
+            flash("Invalid Code", 'danger')
     
     return render_template('verify.html', title='Verify Code', form2=form2)
+
 
 
