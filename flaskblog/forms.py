@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskblog.models import User
 
@@ -84,4 +84,12 @@ class weather(FlaskForm):
     city = StringField('Enter City', validators=[DataRequired()])
     submit = SubmitField(' Check ')
 
+class send_otp(FlaskForm):
+    mob = StringField('Mobile Number', validators=[DataRequired()])
+    # code = StringField('Enter 6 Digit Code', validators=[DataRequired()])
+    send = SubmitField('Send Code')
 
+class verify(FlaskForm):
+    # mob = StringField('Mobile Number', validators=[DataRequired()])
+    code = StringField('Enter 6 Digit Code', validators=[DataRequired()])
+    submit = SubmitField('Verify')

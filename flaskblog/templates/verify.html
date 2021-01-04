@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+    
+        {{ form2.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ form2.code.label(class="form-control-label") }}
+                {% if form2.code.errors %}
+                    {{ form2.code(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form2.code.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form2.code(class="form-control form-control-lg") }}
+                {% endif %}
+            </div> 
+            
+           
+            
+        </fieldset>
+        <div class="form-group">
+            {{ form2.submit(class="btn btn-outline-info") }}<br><br>
+           
+        </div>
+    </form>
+</div> 
+
+{% endblock content %}   

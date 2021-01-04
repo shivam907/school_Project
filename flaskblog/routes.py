@@ -8,7 +8,7 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from flaskblog import app, db, bcrypt, mail
 from flaskblog.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
-                             PostForm, RequestResetForm, ResetPasswordForm, weather)
+                             PostForm, RequestResetForm, ResetPasswordForm, weather, verify, send_otp)
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -270,5 +270,66 @@ def covid():
     return render_template('cov.html', title='COVID19', Today_New_Cases=b[a-1]['totalconfirmed'])
 
 
+def send_code(mobile_no):
+  url = "https://d7-verify.p.rapidapi.com/send"
+
+  payload = "{    \"expiry\": 900,    \"message\": \"Your otp code is {code}\",    \"mobile\": "+mobile_no+",    \"sender_id\": \"SMSInfo\"}"
+  headers = {
+    'content-type': "application/json",
+    'authorization': "Token 7404642da966fe2cc0647def4bccab699b19d0c7",
+    'x-rapidapi-key': "f61787f699mshf9480a998340f9ep13c50djsndfc6e2954a95",
+    'x-rapidapi-host': "d7-verify.p.rapidapi.com"
+    }
+
+  response = requests.request("POST", url, data=payload, headers=headers).json()
+  otp_id = response["otp_id"]
+  return otp_id
+
+
+
+def verify_code(otp, otp_id):
+  url = "https://d7-verify.p.rapidapi.com/verify"
+
+  payload = "{    \"otp_code\": \""+otp+"\",    \"otp_id\": \""+otp_id+"\"}"
+  headers = {
+    'content-type': "application/json",
+    'authorization': "Token 7404642da966fe2cc0647def4bccab699b19d0c7",
+    'x-rapidapi-key': "f61787f699mshf9480a998340f9ep13c50djsndfc6e2954a95",
+    'x-rapidapi-host': "d7-verify.p.rapidapi.com"
+    }
+
+  response = requests.request("POST", url, data=payload, headers=headers).json()
+  if response['status']=='success':
+    return True
+  else:
+    return False
+
+@app.route("/verify", methods=['GET', 'POST'])
+@login_required
+def verify_mob():
+    form1 = send_otp()    
+    if form1.validate_on_submit():
+        mob = form1.mob.data
+        print("OTP SENT Successfully")
+        otp_id = send_code("91"+str(mob))
+        print("  Step 1  ")
+        flash("OTP Sent", 'success')
+        print("  Step 2  ")
+        return redirect('/verify/Code/'+otp_id)
+    return render_template('mob.html', title='Verify Mobile Number', form1=form1)
+
+@app.route("/verify/Code/<string:otp_id>", methods=['GET', 'POST'])
+@login_required
+def verify_codee(otp_id):
+    form2 = verify()
+
+    if form2.validate_on_submit():
+        code = form2.code.data
+        if verify_code(code, otp_id):
+            flash("Your Code in Verified", 'success')
+        else:
+            flash("Invalid Code", 'warning')
+    
+    return render_template('verify.html', title='Verify Code', form2=form2)
 
 
