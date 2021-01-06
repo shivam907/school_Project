@@ -80,13 +80,16 @@ class ResetPasswordForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
 
+
 class weather(FlaskForm):
     city = StringField('Enter City', validators=[DataRequired()])
     submit = SubmitField(' Check ')
 
+
 class send_otp(FlaskForm):
     mob = StringField('Mobile Number', validators=[DataRequired()])
     send = SubmitField('Send Code')
+
 
 class verify(FlaskForm):
     code = StringField('Enter 6 Digit Code', validators=[DataRequired()])
