@@ -273,7 +273,7 @@ def covid():
 def send_code(mobile_no):
   url = "https://d7-verify.p.rapidapi.com/send"
 
-  payload = "{    \"expiry\": 900,    \"message\": \"Your otp code is {code}\",    \"mobile\": "+mobile_no+",    \"sender_id\": \"SMSInfo\"}"
+  payload = "{    \"expiry\": 900,    \"message\": \"Enter {code} to Verify Your Mobile Number -CEZ\",    \"mobile\": "+mobile_no+",    \"sender_id\": \"SMSInfo\"}"
   headers = {
     'content-type': "application/json",
     'authorization': "Token 7404642da966fe2cc0647def4bccab699b19d0c7",

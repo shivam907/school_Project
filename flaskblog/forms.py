@@ -86,10 +86,8 @@ class weather(FlaskForm):
 
 class send_otp(FlaskForm):
     mob = StringField('Mobile Number', validators=[DataRequired()])
-    # code = StringField('Enter 6 Digit Code', validators=[DataRequired()])
     send = SubmitField('Send Code')
 
 class verify(FlaskForm):
-    # mob = StringField('Mobile Number', validators=[DataRequired()])
     code = StringField('Enter 6 Digit Code', validators=[DataRequired()])
     submit = SubmitField('Verify')
