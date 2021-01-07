@@ -312,9 +312,7 @@ def verify_mob():
         mob = form1.mob.data
         print("OTP SENT Successfully")
         otp_id = send_code("91"+str(mob))
-        print("  Step 1  ")
         flash("OTP Sent", 'success')
-        print("  Step 2  ")
         return redirect('/verify/Code/'+otp_id)
     return render_template('mob.html', title='Verify Mobile Number', form1=form1)
 
