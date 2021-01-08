@@ -14,7 +14,6 @@ from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
 
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -25,12 +24,10 @@ def home():
     return render_template('home.html', posts=posts)
 
 
-
 @app.route("/about", methods=['GET', 'POST'])
 def about():
     return render_template('about.html', title='About')
     # return redirect('https://google.com')
-
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -84,12 +81,10 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
-
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
-
     return picture_fn
 
 
@@ -98,7 +93,6 @@ def postpics(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/postpics', picture_fn)
-
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
@@ -218,7 +212,6 @@ def reset_request():
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 
-
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
@@ -246,6 +239,7 @@ def site():
 def contact():
     return render_template('contact.html', title='Contact Us')
 
+
 @app.route("/weather",  methods=['GET', 'POST'])
 def weatherf():
     b=100
@@ -259,6 +253,7 @@ def weatherf():
         temp = round(json.loads(source)['main']['temp']-273.15)
     return render_template('weather.html', title='New',
                             form=form, legend='Check Temperature', c=temp, city=city.capitalize())
+
 
 @app.route("/covid", methods=['GET', 'POST'])
 def covid():
@@ -289,7 +284,6 @@ def send_code(mobile_no):
 
 def verify_code(otp, otp_id):
   url = "https://d7-verify.p.rapidapi.com/verify"
-
   payload = "{    \"otp_code\": \""+otp+"\",    \"otp_id\": \""+otp_id+"\"}"
   headers = {
     'content-type': "application/json",
@@ -297,12 +291,12 @@ def verify_code(otp, otp_id):
     'x-rapidapi-key': "f61787f699mshf9480a998340f9ep13c50djsndfc6e2954a95",
     'x-rapidapi-host': "d7-verify.p.rapidapi.com"
     }
-
   response = requests.request("POST", url, data=payload, headers=headers).json()
   if response['status']=='success':
     return True
   else:
     return False
+
 
 @app.route("/verify", methods=['GET', 'POST'])
 @login_required
@@ -316,11 +310,11 @@ def verify_mob():
         return redirect('/verify/Code/'+otp_id)
     return render_template('mob.html', title='Verify Mobile Number', form1=form1)
 
+
 @app.route("/verify/Code/<string:otp_id>", methods=['GET', 'POST'])
 @login_required
 def verify_codee(otp_id):
     form2 = verify()
-
     if form2.validate_on_submit():
         code = form2.code.data
         if verify_code(code, otp_id):
