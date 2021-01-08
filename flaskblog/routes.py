@@ -268,7 +268,7 @@ def covid():
 def send_code(mobile_no):
   url = "https://d7-verify.p.rapidapi.com/send"
 
-  payload = "{    \"expiry\": 900,    \"message\": \"Enter {code} to Verify Your Mobile Number -CEZ\",    \"mobile\": "+mobile_no+",    \"sender_id\": \"SMSInfo\"}"
+  payload = "{    \"expiry\": 900,    \"message\": \"Enter {code} to Verify Your Mobile Number -CEZ\",    \"mobile\": "+mobile_no+",    \"sender_id\": \"CEZ\"}"
   headers = {
     'content-type': "application/json",
     'authorization': "Token 7404642da966fe2cc0647def4bccab699b19d0c7",
@@ -279,7 +279,6 @@ def send_code(mobile_no):
   response = requests.request("POST", url, data=payload, headers=headers).json()
   otp_id = response["otp_id"]
   return otp_id
-
 
 
 def verify_code(otp, otp_id):
@@ -319,6 +318,7 @@ def verify_codee(otp_id):
         code = form2.code.data
         if verify_code(code, otp_id):
             flash("Your Code is Verified", 'success')
+            return redirect('/home')
         else:
             flash("Invalid Code", 'danger')
     
