@@ -323,12 +323,3 @@ def verify_codee(otp_id):
             flash("Invalid Code", 'danger')
     
     return render_template('verify.html', title='Verify Code', form2=form2)
-
-
-
-
-
-
-
-
- 
