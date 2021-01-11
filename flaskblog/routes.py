@@ -3,13 +3,11 @@ import math
 import os
 import secrets
 import urllib.request
-
 import requests
 from flask import abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
 from PIL import Image
-
 from flaskblog import app, bcrypt, db, mail
 from flaskblog.forms import (LoginForm, PostForm, RegistrationForm,
                              RequestResetForm, ResetPasswordForm,
